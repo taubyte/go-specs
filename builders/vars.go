@@ -2,11 +2,14 @@ package builders
 
 import "time"
 
+var DepreciatedTaubyteDir = false
+
 const (
 	Source          = "src"
 	Output          = "out"
-	TaubyteDir      = "taubyte"
 	DockerDir       = "Docker"
+	TaubyteDir      = ".taubyte"
+	TaubyteDirOld   = "taubyte"
 	Dockerfile      = "Dockerfile"
 	ScriptExtension = ".sh"
 	ConfigFile      = "config.yaml"
