@@ -19,6 +19,7 @@ func (d Dir) BuildZip() string {
 func (d Dir) DefaultOptions(script string, environment builders.Environment) []ci.ContainerOption {
 	ops := d.Dir.DefaultOptions(script, environment)
 	ops = append(ops, d.SetWorkDir())
+
 	return ops
 }
 

@@ -2,8 +2,6 @@ package builders
 
 import "time"
 
-var DepreciatedTaubyteDir = false
-
 const (
 	Source          = "src"
 	Output          = "out"
@@ -16,7 +14,8 @@ const (
 )
 
 var (
-	ImageCleanInterval = 24 * time.Hour
-	ImageCleanAge      = 7 * ImageCleanInterval
-	DefaultTime        = time.Unix(0, 0)
+	DepreciatedTaubyteDir = false
+	ImageCleanInterval    = 24 * time.Hour
+	ImageCleanAge         = 7 * ImageCleanInterval
+	DefaultTime           = time.Unix(0, 0)
 )
