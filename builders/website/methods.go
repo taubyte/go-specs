@@ -3,8 +3,8 @@ package website
 import (
 	"path"
 
-	"github.com/taubyte/go-specs/builders"
 	ci "github.com/taubyte/go-simple-container"
+	"github.com/taubyte/go-specs/builders"
 )
 
 func Wd(workDir string) Dir {
@@ -12,29 +12,15 @@ func Wd(workDir string) Dir {
 	return Dir{wd}
 }
 
-func (d Dir) DockerFile() string {
-	return path.Join(d.DockerDir(), builders.Dockerfile)
-}
-
 func (d Dir) BuildZip() string {
 	return path.Join(d.String(), ZipFile)
 }
 
-func (d Dir) DefaultOptions(script string) []ci.ContainerOption {
-	return []ci.ContainerOption{
-		d.SetSourceVolume(),
-		d.SetEnvironmentVariables(),
-		d.SetOutVolume(),
-		d.SetWorkDir(),
-		d.SetBuildCommand(script),
-	}
-}
+func (d Dir) DefaultOptions(script string, environment builders.Environment) []ci.ContainerOption {
+	ops := d.Dir.DefaultOptions(script, environment)
+	ops = append(ops, d.SetWorkDir())
 
-func (d Dir) SetEnvironmentVariables() ci.ContainerOption {
-	return ci.Variables(map[string]string{
-		"OUT": "/" + builders.Output,
-		"SRC": "/" + builders.Source,
-	})
+	return ops
 }
 
 func (d Dir) SetWorkDir() ci.ContainerOption {
