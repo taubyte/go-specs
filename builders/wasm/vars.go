@@ -25,6 +25,16 @@ var supportedLanguages = map[SupportedLanguage]string{
 	AssemblyScript: ".ts",
 }
 
+var languageAliases = map[SupportedLanguage][]string{
+	Rust:           {"rs"},
+	Go:             {"golang"},
+	AssemblyScript: {"asm", "assembly"},
+}
+
 func SupportedLanguages() map[SupportedLanguage]string {
 	return supportedLanguages
+}
+
+func LanguageAliases() map[SupportedLanguage][]string {
+	return languageAliases
 }
