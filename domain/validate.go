@@ -10,7 +10,7 @@ import (
 )
 
 // TODO move to github.com/taubyte/domain-validation
-func ValidateDNS(_project, host string, dev bool) error {
+func ValidateDNS(_project, host string, dev bool, options ...dv.Option) error {
 	if SpecialDomain.MatchString(host) == true {
 		if dev == true {
 			// For dev mode Pad project string with 0s to be at least 8 characters, otherwise the check below will panic
@@ -33,14 +33,14 @@ func ValidateDNS(_project, host string, dev bool) error {
 		}
 
 		// Check if domain is registered
-		err = dv.FromDNS(context.Background(), &project, host)
+		err = dv.FromDNS(context.Background(), &project, host, options...)
 		// If not
 		if err != nil {
 			// maybe the request has a port number, trim it off
 			host = ExtractHost(host)
 
 			// then try again
-			err = dv.FromDNS(context.Background(), &project, host)
+			err = dv.FromDNS(context.Background(), &project, host, options...)
 			if err != nil {
 				return fmt.Errorf("verifying DNS of `%s` after splitting port from host failed with: %s", host, err)
 			}
