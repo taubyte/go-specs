@@ -16,20 +16,20 @@ func (d *dir) String() string {
 	return string(*d)
 }
 
-func (d *dir) SourceDir() string {
-	return path.Join(d.String(), Source)
-}
+// func (d *dir) SourceDir() string {
+// 	return path.Join(d.String(), Source)
+// }
 
 func (d *dir) CodeSource(file string) string {
-	return path.Join(d.SourceDir(), file)
+	return path.Join(d.String(), file)
 }
 
-func (d *dir) OutDir() string {
-	return path.Join(d.String(), Output)
-}
+// func (d *dir) OutDir() string {
+// 	return path.Join(d.String(), Output)
+// }
 
 func (d *dir) TaubyteDir() string {
-	return path.Join(d.SourceDir(), taubyteDir())
+	return path.Join(d.String(), taubyteDir())
 }
 
 func (d *dir) ConfigFile() string {
@@ -45,16 +45,11 @@ func (d *dir) DockerFile() string {
 }
 
 func (d *dir) SetSourceVolume() ci.ContainerOption {
-	return ci.Volume(d.SourceDir(), "/"+Source)
+	return ci.Volume(d.String(), "/"+Source)
 }
 
-func (d *dir) SetOutVolume() ci.ContainerOption {
-	outDir := d.OutDir()
-	_, err := os.Stat(outDir)
-	if err != nil {
-		os.Mkdir(outDir, 0755)
-	}
-	return ci.Volume(outDir, "/"+Output)
+func (d *dir) SetOutVolume(dir string) ci.ContainerOption {
+	return ci.Volume(dir, "/"+Output)
 }
 
 func (d *dir) SetEnvironmentVariables() ci.ContainerOption {
@@ -68,11 +63,11 @@ func (d *dir) SetBuildCommand(script string) ci.ContainerOption {
 	return ci.Command([]string{"/bin/sh", "/" + Source + "/" + taubyteDir() + "/" + script + ScriptExtension})
 }
 
-func (d *dir) DefaultOptions(script string, environment Environment) []ci.ContainerOption {
+func (d *dir) DefaultOptions(script, outDir string, environment Environment) []ci.ContainerOption {
 	ops := []ci.ContainerOption{
 		d.SetSourceVolume(),
 		d.SetEnvironmentVariables(),
-		d.SetOutVolume(),
+		d.SetOutVolume(outDir),
 		d.SetBuildCommand(script),
 	}
 

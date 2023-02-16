@@ -20,16 +20,14 @@ type Config struct {
 
 type dir string
 type Dir interface {
-	SourceDir() string
 	CodeSource(string) string
-	OutDir() string
 	TaubyteDir() string
 	ConfigFile() string
 	DockerDir() dockerDir
 	DockerFile() string
-	DefaultOptions(script string, environment Environment) []ci.ContainerOption
+	DefaultOptions(script string, outDir string, environment Environment) []ci.ContainerOption
 	SetSourceVolume() ci.ContainerOption
-	SetOutVolume() ci.ContainerOption
+	SetOutVolume(string) ci.ContainerOption
 	SetBuildCommand(script string) ci.ContainerOption
 	SetEnvironmentVariables() ci.ContainerOption
 	String() string
