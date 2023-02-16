@@ -1,6 +1,10 @@
 package builders
 
 import (
+	"fmt"
+	"os"
+	"path"
+
 	ci "github.com/taubyte/go-simple-container"
 )
 
@@ -18,7 +22,10 @@ type Config struct {
 	Enviroment Environment
 }
 
-type dir string
+type dir struct {
+	wd         string
+	taubyteDir string
+}
 type Dir interface {
 	CodeSource(string) string
 	TaubyteDir() string
@@ -33,9 +40,21 @@ type Dir interface {
 	String() string
 }
 
-func Wd(workDir string) *dir {
-	wd := dir(workDir)
-	return &wd
+func Wd(workDir string) (*dir, error) {
+	taubyteDir := TaubyteDir
+	_, err := os.Stat(path.Join(workDir, TaubyteDir))
+	if err != nil {
+		taubyteDir = DepreciatedTaubyteDir
+		_, err := os.Stat(path.Join(workDir, taubyteDir))
+		if err != nil {
+			return nil, fmt.Errorf("no taubyte directory found in `%s`", workDir)
+		}
+	}
+
+	return &dir{
+		wd:         workDir,
+		taubyteDir: taubyteDir,
+	}, nil
 }
 
 type dockerDir string

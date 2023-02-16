@@ -13,23 +13,15 @@ import (
 )
 
 func (d *dir) String() string {
-	return string(*d)
+	return d.wd
 }
-
-// func (d *dir) SourceDir() string {
-// 	return path.Join(d.String(), Source)
-// }
 
 func (d *dir) CodeSource(file string) string {
 	return path.Join(d.String(), file)
 }
 
-// func (d *dir) OutDir() string {
-// 	return path.Join(d.String(), Output)
-// }
-
 func (d *dir) TaubyteDir() string {
-	return path.Join(d.String(), taubyteDir())
+	return path.Join(d.String(), d.taubyteDir)
 }
 
 func (d *dir) ConfigFile() string {
@@ -60,7 +52,7 @@ func (d *dir) SetEnvironmentVariables() ci.ContainerOption {
 }
 
 func (d *dir) SetBuildCommand(script string) ci.ContainerOption {
-	return ci.Command([]string{"/bin/sh", "/" + Source + "/" + taubyteDir() + "/" + script + ScriptExtension})
+	return ci.Command([]string{"/bin/sh", "/" + Source + "/" + d.taubyteDir + "/" + script + ScriptExtension})
 }
 
 func (d *dir) DefaultOptions(script, outDir string, environment Environment) []ci.ContainerOption {
@@ -130,16 +122,11 @@ func (d dockerDir) Tar() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-/******************** Backwards Compatibility  ************************/
-
-func taubyteDir() string {
-	taubyteDir := TaubyteDir
-	if DepreciatedTaubyteDir == true {
-		taubyteDir = TaubyteDirOld
-	}
-
-	return taubyteDir
+func DefaultWDError(err error) error {
+	return fmt.Errorf(defaultWDError, err)
 }
+
+/******************** Backwards Compatibility  ************************/
 
 func (c *Config) HandleDepreciatedEnvironment() (environment Environment) {
 	if len(c.Environment.Image) == 0 {
