@@ -7,18 +7,8 @@ import (
 
 	"github.com/otiai10/copy"
 	git "github.com/taubyte/go-simple-git"
-	"github.com/taubyte/go-specs/builders"
 	functionSpec "github.com/taubyte/go-specs/function"
 )
-
-func Wd(workDir string) (dir Dir, err error) {
-	wd, err := builders.Wd(workDir)
-	if err != nil {
-		return
-	}
-
-	return Dir{wd}, nil
-}
 
 func WasmOutput(outDir string) string {
 	return path.Join(outDir, WasmFileName+WasmExt)

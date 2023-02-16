@@ -7,15 +7,6 @@ import (
 	"github.com/taubyte/go-specs/builders"
 )
 
-func Wd(workDir string) (dir Dir, err error) {
-	wd, err := builders.Wd(workDir)
-	if err != nil {
-		return
-	}
-
-	return Dir{wd}, nil
-}
-
 func (d Dir) BuildZip() string {
 	return path.Join(d.String(), ZipFile)
 }
