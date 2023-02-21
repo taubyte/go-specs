@@ -1,6 +1,8 @@
 package builders
 
 import (
+	"io/fs"
+
 	ci "github.com/taubyte/go-simple-container"
 )
 
@@ -18,32 +20,33 @@ type Config struct {
 	Enviroment Environment
 }
 
-type dir string
 type Dir interface {
-	SourceDir() string
+	Wasm() Wasm
+	Website() Website
 	CodeSource(string) string
-	OutDir() string
 	TaubyteDir() string
 	ConfigFile() string
-	DockerDir() dockerDir
+	DockerDir() DockerDirType
 	DockerFile() string
-	DefaultOptions(script string, environment Environment) []ci.ContainerOption
+	DefaultOptions(script string, outDir string, environment Environment) []ci.ContainerOption
 	SetSourceVolume() ci.ContainerOption
-	SetOutVolume() ci.ContainerOption
+	SetOutVolume(string) ci.ContainerOption
 	SetBuildCommand(script string) ci.ContainerOption
 	SetEnvironmentVariables() ci.ContainerOption
 	String() string
 }
 
-func Wd(workDir string) *dir {
-	wd := dir(workDir)
-	return &wd
+type DockerDirType interface {
+	String() string
+	Stat() (fs.FileInfo, error)
+	Tar() ([]byte, error)
 }
 
-type dockerDir string
+type Wasm interface {
+	WasmCompressed() string
+}
 
-type ExtraVolume struct {
-	SourcePath                       string
-	ContainerPath                    string
-	SourceIsRelativeToBuildDirectory bool
+type Website interface {
+	BuildZip() string
+	SetWorkDir() ci.ContainerOption
 }
