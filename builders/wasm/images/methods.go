@@ -43,6 +43,10 @@ func (l LanguageConfig) ImageEnvVar() imageEnvVar {
 	return l.imageEnvVar
 }
 
+func (l LanguageConfig) Language() wasm.SupportedLanguage {
+	return l.language
+}
+
 func (e envVar) Set(value string) error {
 	return os.Setenv(string(e), value)
 }
