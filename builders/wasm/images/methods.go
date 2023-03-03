@@ -23,7 +23,7 @@ func AssemblyScriptImage(version string) string {
 
 func Config(language wasm.SupportedLanguage) (lang LanguageConfig, err error) {
 	lang, ok := languageConfigs[language]
-	if ok == false {
+	if !ok {
 		err = fmt.Errorf("`%s` is not a supported language", language)
 		return
 	}
@@ -36,15 +36,27 @@ func (l LanguageConfig) Image(version string) string {
 }
 
 func (l LanguageConfig) TarBallPath(wd string) string {
-	return path.Join(wd, TarBallBuildDir, l.tarBallName)
-}
-
-func (l LanguageConfig) ImageEnvVar() imageEnvVar {
-	return l.imageEnvVar
+	return path.Join(wd, TarBallBuildDir, ProductionDir, l.tarBallName)
 }
 
 func (l LanguageConfig) Language() wasm.SupportedLanguage {
 	return l.language
+}
+
+func (l LanguageConfig) TestExamples() TestExampleLanguageConfig {
+	return TestExampleLanguageConfig(l)
+}
+
+func (t TestExampleLanguageConfig) Language() wasm.SupportedLanguage {
+	return t.language
+}
+
+func (t TestExampleLanguageConfig) Image() string {
+	return t.imageMethod(TestExampleVersion)
+}
+
+func (t TestExampleLanguageConfig) TarBallPath(wd string) string {
+	return path.Join(wd, TarBallBuildDir, TestExamplesDir, t.tarBallName)
 }
 
 func (e envVar) Set(value string) error {
