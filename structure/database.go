@@ -8,7 +8,6 @@ type Database struct {
 
 	Match string
 	Regex bool `mapstructure:"useRegex"`
-	Path  string
 	Local bool
 	Key   string
 	Min   int
