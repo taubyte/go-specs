@@ -17,6 +17,8 @@ const (
 	RustRepository           = "rust-wasi"
 	GoRepository             = "go-wasi"
 	AssemblyScriptRepository = "assembly-script-wasi"
+
+	TestExampleVersion = "test-examples"
 )
 
 // Container Image Tarballs
@@ -26,7 +28,11 @@ const (
 	AssemblyScriptTarBallFile = "as.tar"
 )
 
-const TarBallBuildDir = "_builds"
+const (
+	TarBallBuildDir = "_builds"
+	ProductionDir   = "production"
+	TestExamplesDir = "test_examples"
+)
 
 // Image Environment Variables
 var (
@@ -46,18 +52,15 @@ var languageConfigs map[wasm.SupportedLanguage]LanguageConfig = map[wasm.Support
 		language:    wasm.Rust,
 		imageMethod: RustImage,
 		tarBallName: RustTarBallFile,
-		imageEnvVar: RustImageEnvVar,
 	},
 	wasm.Go: {
 		language:    wasm.Go,
 		imageMethod: GoImage,
 		tarBallName: GoTarBallFile,
-		imageEnvVar: GoImageEnvVar,
 	},
 	wasm.AssemblyScript: {
 		language:    wasm.AssemblyScript,
 		imageMethod: AssemblyScriptImage,
 		tarBallName: AssemblyScriptTarBallFile,
-		imageEnvVar: AssemblyScriptEnvVar,
 	},
 }

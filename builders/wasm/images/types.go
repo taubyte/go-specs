@@ -6,11 +6,12 @@ type envVar string
 type imageEnvVar struct {
 	envVar
 }
+
+type TestExampleLanguageConfig LanguageConfig
 type LanguageConfig struct {
 	language    wasm.SupportedLanguage
 	imageMethod func(string) string
 	tarBallName string
-	imageEnvVar imageEnvVar
 }
 
 type VersionedLang struct {

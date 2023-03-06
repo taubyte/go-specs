@@ -5,7 +5,7 @@ go 1.18
 // Taubyte Direct imports
 require (
 	github.com/taubyte/domain-validation v1.0.0
-	github.com/taubyte/go-simple-container v0.4.0
+	github.com/taubyte/go-simple-container v0.4.2
 	github.com/taubyte/go-simple-git v0.2.5
 	github.com/taubyte/utils v0.1.1
 
