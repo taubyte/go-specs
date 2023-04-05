@@ -9,12 +9,12 @@ func Tns() *tnsHelper {
 	return &tnsHelper{}
 }
 
-func (t *tnsHelper) BasicPath(branch, commit, projectId, appId, funcId string) (*common.TnsPath, error) {
-	return methods.GetBasicTNSKey(branch, commit, projectId, appId, funcId, PathVariable)
+func (t *tnsHelper) BasicPath(branch, commit, projectId, appId, smartId string) (*common.TnsPath, error) {
+	return methods.GetBasicTNSKey(branch, commit, projectId, appId, smartId, PathVariable)
 }
 
-func (t *tnsHelper) IndexValue(branch, projectId, appId, funcId string) (*common.TnsPath, error) {
-	return methods.IndexValue(branch, projectId, appId, funcId, PathVariable)
+func (t *tnsHelper) IndexValue(branch, projectId, appId, smartId string) (*common.TnsPath, error) {
+	return methods.IndexValue(branch, projectId, appId, smartId, PathVariable)
 }
 
 func (t *tnsHelper) WasmModulePath(projectId, appId, resourceName string) (*common.TnsPath, error) {

@@ -13,8 +13,8 @@ func (t *tnsHelper) BasicPath(branch, commit, projectId, appId, storeId string) 
 	return methods.GetBasicTNSKey(branch, commit, projectId, appId, storeId, PathVariable)
 }
 
-func (t *tnsHelper) IndexValue(branch, projectId, appId, storId string) (*common.TnsPath, error) {
-	return methods.IndexValue(branch, projectId, appId, storId, PathVariable)
+func (t *tnsHelper) IndexValue(branch, projectId, appId, storeId string) (*common.TnsPath, error) {
+	return methods.IndexValue(branch, projectId, appId, storeId, PathVariable)
 }
 
 func (t *tnsHelper) IndexPath(projectId, appId, name string) *common.TnsPath {

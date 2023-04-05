@@ -1,5 +1,10 @@
 package structureSpec
 
+import (
+	"github.com/taubyte/go-specs/common"
+	databaseSpec "github.com/taubyte/go-specs/database"
+)
+
 type Database struct {
 	Id          string
 	Name        string
@@ -16,6 +21,9 @@ type Database struct {
 
 	// noset, this is parsed from the tags
 	SmartOps []string
+
+	Basic
+	Indexer
 }
 
 func (d Database) GetName() string {
@@ -24,4 +32,20 @@ func (d Database) GetName() string {
 
 func (d *Database) SetId(id string) {
 	d.Id = id
+}
+
+func (d *Database) BasicPath(branch, commit, project, app string) (*common.TnsPath, error) {
+	return databaseSpec.Tns().BasicPath(branch, commit, project, app, d.Id)
+}
+
+func (d *Database) IndexValue(branch, project, app string) (*common.TnsPath, error) {
+	return databaseSpec.Tns().IndexValue(branch, project, app, d.Id)
+}
+
+func (d *Database) IndexPath(project, app string) *common.TnsPath {
+	return databaseSpec.Tns().IndexPath(project, app, d.Name)
+}
+
+func (d *Database) GetId() string {
+	return d.Id
 }

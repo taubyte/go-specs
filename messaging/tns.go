@@ -16,8 +16,8 @@ func (t *tnsHelper) EmptyPath(branch, commit, projectId, appId string) (*common.
 	return methods.GetEmptyTNSKey(branch, commit, projectId, appId, PathVariable)
 }
 
-func (t *tnsHelper) BasicPath(branch, commit, projectId, appId, funcId string) (*common.TnsPath, error) {
-	return methods.GetBasicTNSKey(branch, commit, projectId, appId, funcId, PathVariable)
+func (t *tnsHelper) BasicPath(branch, commit, projectId, appId, msgId string) (*common.TnsPath, error) {
+	return methods.GetBasicTNSKey(branch, commit, projectId, appId, msgId, PathVariable)
 }
 
 func (t *tnsHelper) IndexValue(branch, projectId, appId, msgId string) (*common.TnsPath, error) {
