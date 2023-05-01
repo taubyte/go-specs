@@ -15,3 +15,5 @@ const (
 
 // TODO remove this and iterate, default branch should be gathered from a given repository
 var DefaultBranch = "master"
+
+var Protocols = []string{"auth", "patrick", "monkey", "tns", "hoarder", "node", "seer"}
