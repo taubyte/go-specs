@@ -10,6 +10,7 @@ import (
 
 	ci "github.com/taubyte/go-simple-container"
 	"github.com/taubyte/go-specs/builders"
+	"github.com/taubyte/go-specs/builders/car"
 	"github.com/taubyte/go-specs/builders/wasm"
 	"github.com/taubyte/go-specs/builders/website"
 	"github.com/taubyte/utils/bundle"
@@ -38,6 +39,10 @@ func (d *dir) Wasm() builders.Wasm {
 
 func (d *dir) Website() builders.Website {
 	return website.Dir{Dir: d}
+}
+
+func (d *dir) Car() builders.Car {
+	return car.Dir{Dir: d}
 }
 
 func (d *dir) String() string {

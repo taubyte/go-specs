@@ -21,6 +21,7 @@ type Config struct {
 }
 
 type Dir interface {
+	Car() Car
 	Wasm() Wasm
 	Website() Website
 	CodeSource(string) string
@@ -46,6 +47,11 @@ type Wasm interface {
 	WasmCompressed() string
 }
 
+type Car interface {
+	Uncompressed() string
+	CompressedWebsite() string
+	CompressedWasm() string
+}
 type Website interface {
 	BuildZip() string
 	SetWorkDir() ci.ContainerOption
