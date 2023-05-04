@@ -8,6 +8,7 @@ const (
 	WasmFileName      = "artifact"
 	WasmExt           = ".wasm"
 	WasmCompressedExt = ".zwasm"
+	ZipExt            = ".zip"
 
 	BufferSize = 1024
 )
