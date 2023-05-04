@@ -19,7 +19,7 @@ func (d Dir) WasmCompressed() string {
 }
 
 func (d Dir) Zip() string {
-	return path.Join(d.String(), WasmFileName+ZipExt)
+	return path.Join(d.String(), ZipFile)
 }
 
 func (s SupportedLanguage) Extension() string {
