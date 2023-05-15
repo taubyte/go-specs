@@ -5,10 +5,12 @@ const (
 	ConfigVersion = "0.1.0"
 	BuildFile     = "build.sh"
 
-	WasmFileName      = "main"
-	WasmExt           = ".wasm"
-	WasmCompressedExt = ".zwasm"
-	ZipFile           = "artifact.zip"
+	WasmFileName       = "main"
+	WasmExt            = ".wasm"
+	WasmCompressedExt  = ".zwasm"
+	ZipFile            = "artifact.zip"
+	WasmFile           = "main.wasm"
+	DeprecatedWasmFile = "artifact.wasm"
 
 	BufferSize = 1024
 )

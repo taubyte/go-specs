@@ -14,6 +14,10 @@ func WasmOutput(outDir string) string {
 	return path.Join(outDir, WasmFileName+WasmExt)
 }
 
+func WasmDeprecatedOutput(outDir string) string {
+	return path.Join(outDir, DeprecatedWasmFile)
+}
+
 func (d Dir) WasmCompressed() string {
 	return path.Join(d.String(), WasmFileName+WasmCompressedExt)
 }
