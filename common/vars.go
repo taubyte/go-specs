@@ -17,3 +17,4 @@ const (
 var DefaultBranch = "master"
 
 var Protocols = []string{"auth", "patrick", "monkey", "tns", "hoarder", "node", "seer"}
+var HttpProtocols = []string{"patrick", "node", "seer", "auth"}
