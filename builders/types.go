@@ -44,6 +44,7 @@ type DockerDirType interface {
 
 type Wasm interface {
 	WasmCompressed() string
+	Zip() string
 }
 
 type Website interface {
