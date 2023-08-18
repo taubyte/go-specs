@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/ipfs/go-cid v0.0.7
 	github.com/otiai10/copy v1.9.0
-	github.com/taubyte/domain-validation v1.0.0
+	github.com/taubyte/domain-validation v1.0.1
 	github.com/taubyte/go-simple-container v0.4.2
 	github.com/taubyte/go-simple-git v0.2.5
 	github.com/taubyte/utils v0.1.1
