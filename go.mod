@@ -2,6 +2,8 @@ module github.com/taubyte/go-specs
 
 go 1.18
 
+replace github.com/taubyte/domain-validation => ../domain-validation
+
 require (
 	github.com/ipfs/go-cid v0.0.7
 	github.com/otiai10/copy v1.9.0
