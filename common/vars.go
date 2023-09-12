@@ -16,5 +16,19 @@ const (
 // TODO remove this and iterate, default branch should be gathered from a given repository
 var DefaultBranch = "master"
 
-var Protocols = []string{"auth", "patrick", "monkey", "tns", "hoarder", "substrate", "seer"}
-var HttpProtocols = []string{"patrick", "substrate", "seer", "auth"}
+const (
+	Auth      = "auth"
+	Patrick   = "patrick"
+	Monkey    = "monkey"
+	TNS       = "tns"
+	Hoarder   = "hoarder"
+	Substrate = "substrate"
+	Seer      = "seer"
+	Gateway   = "gateway"
+)
+
+var (
+	Protocols          = []string{Auth, Patrick, Monkey, TNS, Hoarder, Substrate, Seer, Gateway}
+	HTTPProtocols      = []string{Patrick, Substrate, Seer, Auth, Gateway}
+	P2PStreamProtocols = []string{Seer, Auth, Patrick, TNS, Monkey, Hoarder, Substrate}
+)

@@ -9,6 +9,7 @@ require (
 	github.com/taubyte/go-simple-container v0.4.2
 	github.com/taubyte/go-simple-git v0.2.5
 	github.com/taubyte/utils v0.1.1
+	golang.org/x/exp v0.0.0-20230116083435-1de6713980de
 
 )
 
