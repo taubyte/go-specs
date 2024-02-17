@@ -6,8 +6,7 @@
 [![Discord](https://img.shields.io/discord/973677117722202152?color=%235865f2&label=discord)](https://tau.link/discord)
 
 # taubyte/go-specs
-
-A Go implementation of Taubyte Specs.
+A collection of helpers used by tau, config-compiler, tau-cli and others.
 
 # License
 Please see the LICENSE file for details.
@@ -15,10 +14,3 @@ Please see the LICENSE file for details.
 
 # Help
 Find us on our [Discord](https://discord.gg/taubyte)
-
-
-# Maintainers
- - Samy Fodil @samyfodil
- - Sam Stoltenberg @skelouse
- - Tafseer Khan @tafseer-khan
- - Aron Jalbuena @arontaubyte
