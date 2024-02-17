@@ -1,3 +1,3 @@
 package patrick
 
-var PubSubIdent = "partick's times"
+var PubSubIdent = "/cicd/jobs"
