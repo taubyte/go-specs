@@ -3,6 +3,7 @@ package domainSpec
 import (
 	"context"
 	"fmt"
+	"regexp"
 	"strings"
 
 	"github.com/ipfs/go-cid"
@@ -10,8 +11,8 @@ import (
 )
 
 // TODO move to github.com/taubyte/domain-validation
-func ValidateDNS(_project, host string, dev bool, options ...dv.Option) error {
-	if SpecialDomain.MatchString(host) {
+func ValidateDNS(generatedRegex *regexp.Regexp, _project, host string, dev bool, options ...dv.Option) error {
+	if generatedRegex.MatchString(host) {
 		if dev {
 			// For dev mode Pad project string with 0s to be at least 8 characters, otherwise the check below will panic
 			if len(_project) < 8 {
@@ -19,6 +20,7 @@ func ValidateDNS(_project, host string, dev bool, options ...dv.Option) error {
 			}
 		}
 
+		// TODO: use a regex or at least a hasprefix here. think of (somethig)-(prj:8)
 		// Confirm host contains last 8 of project id
 		if !strings.Contains(host, strings.ToLower(_project[len(_project)-8:])) {
 			return fmt.Errorf("generated fqdn `%s` does not contain last 8 of project id %s", host, _project)
